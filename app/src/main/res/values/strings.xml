@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DemoRsNdk</string>
+    <string name="julia_caption">Julia Set</string>
+    <string name="rusty_caption">Rusty Caption!</string>
+</resources>
