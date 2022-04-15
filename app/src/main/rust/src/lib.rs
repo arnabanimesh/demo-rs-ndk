@@ -7,8 +7,8 @@ pub mod android {
     use self::jni::sys::jstring;
     use self::jni::JNIEnv;
     use std::os::raw::c_void;
-    mod fractral;
     mod graphic;
+    mod julia;
 
     #[no_mangle]
     pub unsafe extern "C" fn Java_com_arnabanimesh_demorsndk_MainActivity_imgCaptionRs(
@@ -46,7 +46,7 @@ pub mod android {
         let pixels =
             std::slice::from_raw_parts_mut(pixels as *mut u8, (info.stride * info.height) as usize);
 
-        fractral::render(pixels, info.width as u32, info.height as u32);
+        julia::render(pixels, info.width as u32, info.height as u32);
         graphic::bitmap_unlock_pixels(raw_env, bmp);
     }
 }
