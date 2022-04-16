@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.arnabanimesh.demorsndk"
-        minSdk 21
+        minSdk 29
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -21,7 +21,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            jniDebuggable false
+            debuggable false
         }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            jniDebuggable true
+            debuggable true
+        }
+    }
+    sourceSets.debug {
+        manifest.srcFile 'src/debug/AndroidManifest.xml'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -48,7 +59,9 @@ cargo {
     module = "src/main/rust"
     libname = "rust"
     targets = ["arm", "arm64", "x86", "x86_64"]
-    profile = 'release'
+    // Build Types should have "debug" in the name to invoke debug build of the Rust code
+    // otherwise it defaults to "release" build
+    profile = gradle.startParameter.taskNames.any{it.toLowerCase().contains("debug")} ? "debug" : "release"
 }
 
 afterEvaluate {

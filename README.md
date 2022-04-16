@@ -16,3 +16,4 @@
 * Add Android targets to
   Rust: `rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android`
 
+**Note** Check out [Fixing build error for Above NDK 23 and above](https://github.com/mozilla/rust-android-gradle/issues/89#issuecomment-1079862019) if you are facing `-lgcc` linking errors
